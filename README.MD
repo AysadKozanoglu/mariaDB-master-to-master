@@ -6,7 +6,7 @@ Author: Aysad Kozanoglu email: aysadx@gmail.com
 node-db1
 node-db2
 
-##### maridDB server install on both nodes
+##### mariaDB server install on both nodes
 ```bash
 apt-get install software-properties-common
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
@@ -363,6 +363,8 @@ key_buffer		    = 16M
 ```
 <br>
 
+
+useful links:
 
 [MariaDB(MySQL) Master-Master Replication | Marko Sutic's Database Blog](http://msutic.blogspot.com/2015/02/mariadbmysql-master-master-replication.html)
 
