@@ -132,8 +132,11 @@ replication_status.sh
 ```
 #! /bin/sh
 
-remoteSlave=$(ssh -p22 node-db2 /home/ghost/mysql_slave_status.sh | grep -E -i "Master_Log_File|Exec_Master_Log_Pos" | awk '{print $2}'| uniq )
-localMaster=$(mysql -u root -pP4SSWORD -e "show master status\G" | grep -E "mariadb|Position" | awk '{print $2}')
+    PW=P4SSWORD
+DBUSER=DB-USER
+
+remoteSlave=$(ssh -p22 node-db2 /home/user/mysql_slave_status.sh | grep -E -i "Master_Log_File|Exec_Master_Log_Pos" | awk '{print $2}'| uniq )
+localMaster=$(mysql -u $DBUSER -p$PW -e "show master status\G" | grep -E "mariadb|Position" | awk '{print $2}')
 
 echo -n "REPLICATION STATUS IS:\n"
 if [ "$localMaster" == "$remoteSlave" ]; then echo "OK"; else echo "NOT OK";fi
@@ -145,7 +148,7 @@ echo -n "local Master: "$localMaster"\n";
 ```
 ##### oneliner - replication status checker
 ```
-localMaster=$(mysql -u root -pP4SSWORD -e "show master status\G" | grep -E "mariadb|Position" | awk '{print $2}'); remoteSlave=$(ssh -p22 node-db2 /home/ghost/mysql_slave_status.sh | grep -E -i "Master_Log_File|Exec_Master_Log_Pos" | awk '{print $2}'| uniq ); echo -e "\n Replication is" $(if [ "$localMaster" == "$remoteSlave" ]; then echo "OK"; else echo "NOT OK";fi); echo -e "\n" "local Master: "$localMaster " remote Slave: "$remoteSlave;
+PW=P4SSWORD; DBUSER=DB-USER; localMaster=$(mysql -u $DB-USER -p$PW -e "show master status\G" | grep -E "mariadb|Position" | awk '{print $2}'); remoteSlave=$(ssh -p22 node-db2 /home/user/mysql_slave_status.sh | grep -E -i "Master_Log_File|Exec_Master_Log_Pos" | awk '{print $2}'| uniq ); echo -e "\n Replication is" $(if [ "$localMaster" == "$remoteSlave" ]; then echo "OK"; else echo "NOT OK";fi); echo -e "\n" "local Master: "$localMaster " remote Slave: "$remoteSlave;
 ```
 <br>
 
