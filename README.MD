@@ -152,7 +152,7 @@ PW=P4SSWORD; DBUSER=DB-USER; localMaster=$(mysql -u $DB-USER -p$PW -e "show mast
 ```
 <br>
 
-### full /etc/mysql/my.cnf
+### full  /etc/mysql/my.cnf config for production
 
 ```mysql
 [client]
