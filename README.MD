@@ -1,3 +1,5 @@
+Author: Aysad Kozanoglu email: aysadx@gmail.com 
+
 
 # MariaDB Master-to-Master replication
 
