@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
     PW=P4SSWORD
 DBUSER=DB-USER
