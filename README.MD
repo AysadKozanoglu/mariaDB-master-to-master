@@ -11,6 +11,7 @@ apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
 add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://www.ftp.saix.net/DB/mariadb/repo/10.1/debian  jessie main'
 apt-get update
 apt-get install mariadb-server
+mysql_secure_installation
 ```
 <br>
 
@@ -151,6 +152,15 @@ echo -n "local Master: "$localMaster"\n";
 PW=P4SSWORD; DBUSER=DB-USER; localMaster=$(mysql -u $DB-USER -p$PW -e "show master status\G" | grep -E "mariadb|Position" | awk '{print $2}'); remoteSlave=$(ssh -p22 node-db2 /home/user/mysql_slave_status.sh | grep -E -i "Master_Log_File|Exec_Master_Log_Pos" | awk '{print $2}'| uniq ); echo -e "\n Replication is" $(if [ "$localMaster" == "$remoteSlave" ]; then echo "OK"; else echo "NOT OK";fi); echo -e "\n" "local Master: "$localMaster " remote Slave: "$remoteSlave;
 ```
 <br>
+
+#### iptables - Allow specific ip to access mariaDB port (3306)
+the following rule is only extension of existing iptables preconfigured rules. before this rule must be all input blocked.
+
+```
+IPT="/sbin/iptables"
+$IPT -A INPUT -p tcp -s 10.10.0.40 --dport 3306 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+```
+
 
 ### full  /etc/mysql/my.cnf config for production
 
