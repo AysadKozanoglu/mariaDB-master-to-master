@@ -6,7 +6,7 @@ Author: Aysad Kozanoglu email: aysadx@gmail.com
 node-db1
 node-db2
 
-##### maridDB server install on both nodes
+##### mariaDB server install on both nodes
 ```bash
 apt-get install software-properties-common
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
